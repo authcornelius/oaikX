@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, TouchableOpacity, Platform, TextInput } from 'react-native'
+import { View, Text, SafeAreaView, TouchableOpacity, Platform, TextInput, ScrollView } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 import React, { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'expo-router';
@@ -20,7 +20,6 @@ export default function OtpVerification() {
 
     const handlePrevious = () => {
         router.back();
-        console.log("Back to previous screen");
     }
 
     const handleVerify = () => {
@@ -51,7 +50,7 @@ export default function OtpVerification() {
 
   return (
     <SafeAreaView className='flex-1'>
-        <View className={`h-screen ${Platform.OS === 'ios' ? 'px-5' : 'px-5 py-10'}`}>
+        <ScrollView className={`h-screen ${Platform.OS === 'ios' ? 'px-5' : 'px-5 py-10'}`}>
             <View className='rounded-full w-14 h-14 overflow-hidden border-2 border-gray-300'>
                 <TouchableOpacity
                     className='flex-1 items-center justify-center bg-gray-100' 
@@ -125,7 +124,7 @@ export default function OtpVerification() {
                     </TouchableOpacity>
                 </View>
             </View>
-        </View> 
+        </ScrollView> 
     </SafeAreaView>
   )
 }

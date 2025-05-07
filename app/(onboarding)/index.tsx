@@ -1,4 +1,4 @@
-import { SafeAreaView, Text, View } from "react-native";
+import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { useRouter } from "expo-router";
 import Button from "@/components/Button";
@@ -52,13 +52,15 @@ export default function HomeScreen() {
 
           <View className="flex-row items-center justify-center">
             <Text className="font-inter-regular">Already have an account?</Text>
-            <Text
-              className="text-[#0d1d35] font-inter-bold"
+            <TouchableOpacity 
               onPress={() => handleLoginRoute()}
             >
-              {" "}
-              Sign In
-            </Text>
+              <Text
+                className="text-[#0d1d35] font-inter-bold ml-2"
+              >
+                Sign In
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
