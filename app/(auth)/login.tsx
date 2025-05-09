@@ -80,7 +80,7 @@ export default function Login() {
       if (isValid) {
         console.log('Login attempt with:', email, password);
         // Uncomment to navigate to home after successful validation
-        // router.push('/home');
+        router.push('/(main)/discover');
       }
     };
     
@@ -90,7 +90,7 @@ export default function Login() {
     };
 
     const handleForgetPassword = () => {
-      router.push('/(onboarding)/forgot-password')
+      router.push('/(auth)/forgot-password')
     }
 
     // Render each social login button
@@ -130,6 +130,7 @@ export default function Login() {
                 <TextInput
                   className='h-14 w-full bg-gray-100 rounded-lg p-5'
                   placeholder='Enter your email'
+                  placeholderTextColor='#999999'
                   value={email}
                   onChangeText={setEmail}
                   onBlur={() => {
@@ -161,6 +162,7 @@ export default function Login() {
                   <TextInput
                     className='h-14 w-full bg-gray-100 rounded-lg p-5'
                     placeholder='Enter your password'
+                    placeholderTextColor='#999999'
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry={!showPassword}

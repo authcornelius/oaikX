@@ -109,12 +109,12 @@ export default function Signup() {
     if (isValid) {
       console.log('Login attempt with:', email, password);
       // Uncomment to navigate to home after successful validation
-      router.push('/(onboarding)/otp-verification');
+      router.push('/(auth)/otp-verification');
     }
   };
 
   const handleLogin = () => {
-    router.push('/(onboarding)/login');
+    router.push('/(auth)/login');
   };
 
     // Render each social login button
@@ -154,6 +154,7 @@ export default function Signup() {
                 <TextInput
                   className='h-14 w-full bg-gray-100 rounded-lg p-5'
                   placeholder='Enter your full name'
+                  placeholderTextColor='#999999'
                   value={fullName}
                   onChangeText={setFullName}
                   onBlur={() => {
@@ -184,6 +185,7 @@ export default function Signup() {
                 <TextInput
                   className='h-14 w-full bg-gray-100 rounded-lg p-5'
                   placeholder='Enter your email'
+                  placeholderTextColor='#999999'
                   value={email}
                   onChangeText={setEmail}
                   onBlur={() => {
@@ -215,6 +217,7 @@ export default function Signup() {
                   <TextInput
                     className='h-14 w-full bg-gray-100 rounded-lg p-5'
                     placeholder='Enter your password'
+                    placeholderTextColor='#999999'
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry={!showPassword}

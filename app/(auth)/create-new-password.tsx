@@ -61,7 +61,7 @@ export default function CreateNewPassword() {
       setTimeout(() => {
         setIsLoading(false)
         // Navigate to success screen or login
-        router.replace('/(onboarding)/login')
+        router.replace('/(auth)/login')
       }, 1500)
     }
   }
@@ -106,6 +106,7 @@ export default function CreateNewPassword() {
                   <TextInput
                     className='h-14 w-full bg-gray-100 rounded-lg p-5'
                     placeholder='Enter your password'
+                    placeholderTextColor='#999999'
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry={!showPassword}
@@ -136,6 +137,7 @@ export default function CreateNewPassword() {
                   <TextInput
                     className='h-14 w-full bg-gray-100 rounded-lg p-5'
                     placeholder='Re-enter your password'
+                    placeholderTextColor='#999999'
                     value={confirmPassword}
                     onChangeText={setConfirmPassword}
                     secureTextEntry={!showPassword}

@@ -9,7 +9,7 @@ export default function HomeScreen() {
   const router = useRouter();
 
   const handleLoginRoute = () => {
-    router.push("/(onboarding)/login");
+    router.push("/(auth)/login");
   };
 
   const handleOnboardingRoute = () => {

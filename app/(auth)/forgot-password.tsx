@@ -58,7 +58,7 @@ export default function ForgotPassword() {
       setTimeout(() => {
         setIsLoading(false)
         // Navigate to the separate create new password component
-        router.push('/(onboarding)/otp-verification')
+        router.push('/(auth)/otp-verification')
       }, 1500)
     }
   }
@@ -115,8 +115,9 @@ export default function ForgotPassword() {
               {contactMethod === 'email' ? (
                 <View className='mt-4'>
                   <TextInput
-                    className={`border p-4 rounded-md ${contactError ? 'border-red-500' : 'border-gray-300'}`}
+                    className="h-14 w-full bg-gray-100 rounded-lg p-5"
                     placeholder="Enter your email"
+                    placeholderTextColor='#999999'
                     value={email}
                     onChangeText={setEmail}
                     keyboardType="email-address"
@@ -129,8 +130,9 @@ export default function ForgotPassword() {
               ) : (
                 <View className='mt-4'>
                   <TextInput
-                    className={`border p-4 rounded-md ${contactError ? 'border-red-500' : 'border-gray-300'}`}
+                    className="h-14 w-full bg-gray-100 rounded-lg p-5"
                     placeholder="Enter your mobile number"
+                    placeholderTextColor='#999999'
                     value={mobile}
                     onChangeText={setMobile}
                     keyboardType="phone-pad"

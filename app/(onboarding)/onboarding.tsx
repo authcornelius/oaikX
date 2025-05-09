@@ -29,14 +29,14 @@ export default function Onboarding() {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const handleSkip = () => {
-        router.push('/(onboarding)/signup');
+        router.push('/(auth)/signup');
     }
 
     const handleNext = () => {
         if (currentIndex < onboardingData.length - 1) {
             setCurrentIndex(currentIndex + 1);
         } else {
-            router.push('/(onboarding)/signup');
+            router.push('/(auth)/signup');
         }
     }
 
