@@ -1,22 +1,44 @@
-import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, Image, TouchableOpacity, Platform } from 'react-native'
 import React, { useState } from 'react'
-import { FontAwesome } from '@expo/vector-icons';
+import { AntDesign, FontAwesome, Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Header from '../../components/discover/header'
 import Filter from '@/components/discover/filter'
 import Land from '@/assets/images/land.png'
-import Image1 from '@/assets/properties/three-bedroom-apartmnet-union-market-noho-washington-dc-luxury.jpeg'
+
+
+import RecommendedCard from '@/components/property/recommendedCard';
+import NearbyCard from '@/components/property/nearByCard';
+
+import recommendedData from '@/constants/data';
+import { useRouter } from 'expo-router';
 
 export default function Discover() {
-
-  const [ addFavorites, setAddFavorites ] = useState(false);
+  const [favorites, setFavorites] = useState<Record<string, boolean>>({});
+  
+  const toggleFavorite = (id: string) => {
+    setFavorites(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
 
   const categories = [
     { id: '1', name: 'Land', image: Land },
-    { id: '2', name: 'Home', image: Land },
-    { id: '3', name: 'Apartment', image: Land },
+    { id: '2', name: 'Apartment', image: Land },
+    { id: '3', name: 'Event Center', image: Land },
     { id: '4', name: 'Hotel', image: Land },
   ]
+
+  const handlePropertyDetails = (id: string) => {
+    // router.push(`/property/${id}`);
+    console.log(`Property ID: ${id}`);
+  };
+  
+  const onToggleFavorite = (id: string) => {
+    toggleFavorite(id);
+  };
+
   return (
     <SafeAreaView
       className='flex-1 bg-white px-5'
@@ -24,12 +46,12 @@ export default function Discover() {
     >
       <View>
         <Header />
-
         <Filter />
       </View>
       
       <ScrollView 
-        className='flex-1 bg-white '
+        className='flex-1 bg-white'
+        showsVerticalScrollIndicator={false}
       >
         <View className='flex-row items-center justify-around mt-3 mb-3'>
           {categories.map((category) => (
@@ -54,9 +76,43 @@ export default function Discover() {
 
         {/* recommended property */}
         <View>
-          <View className='flex-row items-center justify-between'>
-            <Text className='font-inter-bold text-lg mt-5 text-[#0D1D35]'>
+          <View className='flex-row items-center justify-between mt-5'>
+            <Text className='font-inter-bold text-lg text-[#0D1D35]'>
               Recommended Property
+            </Text>
+
+            <TouchableOpacity>
+              <Text className='text-lg font-inter-regular text-blue-500'>
+                See all
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          >
+            <View className='flex-row gap-x-10'>
+              {/* RecommendedCard */}
+              {recommendedData.map((property) => (
+                <RecommendedCard
+                  key={property.id}
+                  property={property}
+                  isFavorite={!!favorites[property.id]}
+                  onToggleFavorite={toggleFavorite}
+                  onPress={handlePropertyDetails}
+                  horizontal={true}
+                />
+              ))}
+            </View>
+          </ScrollView>
+        </View>
+
+        {/* nearby property */}
+        <View>
+          <View className='flex-row items-center justify-between mb-5'>
+            <Text className='font-inter-bold text-lg mt-5 text-[#0D1D35]'>
+              Nearby Property
             </Text>
 
             <TouchableOpacity>
@@ -66,46 +122,16 @@ export default function Discover() {
             </TouchableOpacity>
           </View>
 
-          <View>
-            <View className='w-60 p-2 bg-gray-100 rounded-lg mt-5 shadow-[1px_1px_3px_3px_rgba(0,0,0,0.1)]'>
-              <View>
-                <Image 
-                  source={Image1}
-                  className='w-56 h-40 rounded-lg'
-                />
-
-                <View className='absolute top-3 right-5'>
-                  {addFavorites === true ? (
-                    <TouchableOpacity onPress={() => setAddFavorites(false)}>
-                      <FontAwesome
-                        name='heart'
-                        size={20}
-                        color="#e23030"
-                        className='rounded-full bg-white p-2'
-                      />
-                    </TouchableOpacity>
-                  ) : (
-                    <TouchableOpacity onPress={() => setAddFavorites(true)}>
-                      <FontAwesome
-                        name='heart-o'
-                        size={20}
-                        color="#e23030"
-                        className='rounded-full bg-white p-2'
-                      />
-                    </TouchableOpacity>
-                  )}
-                </View>
-
-                <View>
-                  <Text className='text-lg font-inter-bold mt-2 text-[#0D1D35]'>
-                      3 Bedroom Apartment
-                      <Text className='text-sm font-inter-regular text-[#0D1D35]'>
-                        Union Market, Noho, Washington DC
-                      </Text>
-                  </Text>
-                </View>
-              </View>
-            </View>
+          <View className="mb-4 flex-col gap-y-3">
+            {recommendedData.map(property => (
+              <NearbyCard
+                key={property.id}
+                property={property}
+                isFavorite={!!favorites[property.id]}
+                onToggleFavorite={toggleFavorite}
+                onPress={handlePropertyDetails}
+              />
+            ))}
           </View>
         </View>
       </ScrollView>

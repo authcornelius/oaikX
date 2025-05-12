@@ -31,11 +31,11 @@ export default function TabLayout() {
           
           if (route.name === "discover") {
             iconName = focused ? "eye" : "eye-outline";
-          } else if (route.name === "booking") {
-            iconName = focused ? "calendar" : "calendar-outline";
+          } else if (route.name === "explore") {
+            iconName = focused ? "location" : "location-outline";
           } else if (route.name === "property-posting") {
             iconName = focused ? "add-circle" : "add-circle-outline";
-          } else if (route.name === "favorites") {
+          } else if (route.name === "favorite") {
             iconName = focused ? "heart" : "heart-outline";
           } else if (route.name === "profile") {
             iconName = focused ? "person" : "person-outline";
@@ -60,9 +60,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="booking"
+        name="explore"
         options={{
-          title: "Bookings",
+          title: "Explore",
         }}
       />
       <Tabs.Screen
@@ -83,9 +83,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="favorites"
+        name="favorite"
         options={{
-          title: "Favorites",
+          title: "Favorite",
         }}
       />
       <Tabs.Screen
