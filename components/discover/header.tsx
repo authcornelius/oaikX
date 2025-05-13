@@ -8,7 +8,7 @@ export default function Header() {
 
 
   const handleNotification = () => {
-    router.push('/(extra)/(notification)');
+    router.push('/(extra)/(notification)/notification');
   };
 
   return (

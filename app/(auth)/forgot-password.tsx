@@ -1,8 +1,9 @@
-import { View, Text, SafeAreaView, Platform, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native'
+import { View, Text, Platform, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import { AntDesign } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import Button from '@/components/Button';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ForgotPassword() {
   const router = useRouter()

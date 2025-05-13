@@ -15,6 +15,7 @@ import { useRouter } from 'expo-router';
 
 export default function Discover() {
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
+  const router = useRouter();
   
   const toggleFavorite = (id: string) => {
     setFavorites(prev => ({
@@ -37,6 +38,14 @@ export default function Discover() {
   
   const onToggleFavorite = (id: string) => {
     toggleFavorite(id);
+  };
+
+  const handleRecommendedProperty = () => {
+    router.push(`/(property-detail)/recommended`);
+  };
+
+  const handleNearByProperty = () => {
+    router.push(`/(property-detail)/near-by`);
   };
 
   return (
@@ -81,7 +90,7 @@ export default function Discover() {
               Recommended Property
             </Text>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => handleRecommendedProperty()}>
               <Text className='text-lg font-inter-regular text-blue-500'>
                 See all
               </Text>
@@ -115,7 +124,7 @@ export default function Discover() {
               Nearby Property
             </Text>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => handleNearByProperty()}>
               <Text className='text-lg mt-5 font-inter-regular text-blue-500'>
                 See all
               </Text>

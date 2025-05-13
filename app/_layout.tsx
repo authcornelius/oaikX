@@ -38,6 +38,7 @@ export default function RootLayout() {
         <Stack.Screen name="(extra)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
+    
       <StatusBar style="auto" />
     </View>
   );

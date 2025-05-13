@@ -1,8 +1,9 @@
-import { View, Text, SafeAreaView, TouchableOpacity, Platform, TextInput, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, Platform, TextInput, ScrollView } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 import React, { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'expo-router';
 import Button from '@/components/Button';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function OtpVerification() {
     const router = useRouter();

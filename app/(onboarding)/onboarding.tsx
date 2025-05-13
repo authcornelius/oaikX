@@ -1,9 +1,10 @@
-import { View, Text, SafeAreaView, TouchableOpacity, Platform } from 'react-native'
+import { View, Text, TouchableOpacity, Platform } from 'react-native'
 import React, { useState } from 'react'
 import { useRouter } from 'expo-router';
 import { AntDesign, Octicons } from '@expo/vector-icons';
 import Image from '../../components/image/image';
 import { OnboardingImages, OnboardingImagesDescription, OnboardingImagesTitle } from '../../assets/registry/images';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Sample onboarding content
 const onboardingData = [

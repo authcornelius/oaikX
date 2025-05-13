@@ -1,9 +1,10 @@
-import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { useRouter } from "expo-router";
 import Button from "@/components/Button";
 import Image from "@/components/image/image";
 import { OnboardingImages } from "@/assets/registry/images";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   const router = useRouter();

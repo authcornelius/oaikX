@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import { useRouter } from 'expo-router';
 import { AntDesign, EvilIcons, FontAwesome, Fontisto, Ionicons, MaterialIcons } from '@expo/vector-icons';
@@ -6,6 +6,7 @@ import GoogleIcon from '../../assets/images/icons8-google-48.png'
 import { Image } from 'react-native';
 import Button from '@/components/Button';
 import { FlatList } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Signup() {
   const [fullName, setFullName] = useState('');
