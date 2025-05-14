@@ -12,18 +12,13 @@ export default function Favorite() {
       <View className='flex flex-row items-center justify-between'>
         <Back />
 
-        <Text className='text-lg font-inter-medium'>Favorite</Text>
+        <View className='mr-10'>
+          <Text className='text-lg font-inter-medium'>Favorite</Text>
+        </View>
 
-        <View className='rounded-full w-14 h-14 overflow-hidden border-2 border-gray-300'>
-          <TouchableOpacity 
-            className='flex-1 items-center justify-center bg-gray-100'
-            // onPress={handleBack}
-          >
-            <Feather   
-              name='search'
-              size={24}
-            />
-          </TouchableOpacity>
+
+        <View>
+          
         </View>
       </View>
 

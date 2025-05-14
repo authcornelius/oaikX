@@ -13,13 +13,13 @@ export default function TabLayout() {
         tabBarLabelStyle: {
           fontSize: 12,
           fontFamily: "inter-medium",
-          marginBottom: 5,
+          marginBottom: 20,
         },
         tabBarStyle: {
             backgroundColor: "#0d1d35",
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
-            height: 85,
+            height: 100,
             borderTopWidth: 0,
             borderTopColor: "transparent",
         },

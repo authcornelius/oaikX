@@ -1,7 +1,8 @@
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Image, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { Ionicons, Octicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import ProfileImg from '@/assets/images/9334176.jpg'
 
 export default function Header() {
   const router = useRouter();
@@ -13,20 +14,27 @@ export default function Header() {
 
   return (
     <View className='flex-row justify-between items-center pt-1 pb-3'>
-      <View>
-        <Text className='text-md font-inter-bold mb-1 ml-1'>
-          Hi, <Text>Cornel</Text>
-        </Text>
-
-        <View className='flex-row items-center gap-x-1'>
-          <Ionicons 
-            name='location-sharp'
-            size={16}
-            color="#0d1d35"
-          />
-          <Text className=' text-md font-inter-bold text-gray-500'>
-            Benin City, NGA
+      <View className='flex-row items-center gap-x-1'>
+        <Image 
+          source={ProfileImg}
+          className='h-14 w-14 rounded-full'
+          resizeMode='cover'
+        />
+        <View className='flex-col gap-y-2'>
+          <Text className='text-md font-inter-bold ml-1'>
+            Hi, <Text>Cornel</Text>
           </Text>
+
+          <View className='flex-row items-center gap-x-1'>
+            <Ionicons 
+              name='location-sharp'
+              size={16}
+              color="#0d1d35"
+            />
+            <Text className=' text-md font-inter-bold text-gray-500'>
+              Benin City, NGA
+            </Text>
+          </View>
         </View>
       </View>
 
