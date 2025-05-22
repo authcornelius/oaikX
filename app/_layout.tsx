@@ -6,7 +6,7 @@ import { useEffect, useState, useRef } from 'react';
 import 'react-native-reanimated';
 import '../global.css';
 import { View, Dimensions, Animated, TouchableOpacity } from 'react-native';
-import SideBar from "@/components/discover/side-bar";
+import SideBar from "@/components/discover/sideBar/side-bar";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();

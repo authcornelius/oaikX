@@ -85,7 +85,7 @@ export default function Login() {
     if (isValid) {
       console.log('Login attempt with:', email, password);
       // Uncomment to navigate to home after successful validation
-      router.push('/(main)/discover');
+      router.replace('/(main)/discover');
     }
   };
   
