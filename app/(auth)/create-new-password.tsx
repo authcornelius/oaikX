@@ -76,7 +76,7 @@ export default function CreateNewPassword() {
       >
         <View className='rounded-full w-14 h-14 overflow-hidden border-2 border-gray-300'>
           <TouchableOpacity
-            className='flex-1 items-center justify-center bg-gray-100' 
+            className='flex-1 items-center justify-center bg-gray-200' 
             onPress={handlePrevious}
           >
             <AntDesign 

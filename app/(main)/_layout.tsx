@@ -1,8 +1,23 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import { View } from "react-native";
+import { Platform, View, Dimensions } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+// Get screen dimensions for responsive calculations
+const { width, height } = Dimensions.get('window');
+const isSmallScreen = width < 370;
 
 export default function TabLayout() {
+  const insets = useSafeAreaInsets();
+  
+  // Adjust tab bar height based on screen size and platform
+  const tabBarHeight = Platform.OS === 'ios' 
+    ? (isSmallScreen ? 80 : 100) + (insets.bottom > 0 ? 0 : 20) 
+    : isSmallScreen ? 70 : 90;
+  
+  // Adjust icon size based on screen size
+  const iconSize = isSmallScreen ? 20 : 24;
+  
   return (
     <Tabs
       screenOptions={({ route }) => ({
@@ -11,22 +26,22 @@ export default function TabLayout() {
         tabBarInactiveTintColor: "rgba(255, 255, 255, 0.5)",
         tabBarShowLabel: true,
         tabBarLabelStyle: {
-          fontSize: 12,
+          fontSize: isSmallScreen ? 10 : 12,
           fontFamily: "inter-medium",
-          marginBottom: 20,
+          marginBottom: isSmallScreen ? 15 : 20,
         },
         tabBarStyle: {
-            backgroundColor: "#0d1d35",
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
-            height: 100,
-            borderTopWidth: 0,
-            borderTopColor: "transparent",
+          backgroundColor: "#0d1d35",
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+          height: tabBarHeight,
+          borderTopWidth: 0,
+          borderTopColor: "transparent",
         },
         tabBarItemStyle: {
-          padding: 10,
+          padding: isSmallScreen ? 5 : 10,
         },
-        tabBarIcon: ({ focused, color, size }) => {
+        tabBarIcon: ({ focused, color }) => {
           let iconName;
           
           if (route.name === "discover") {
@@ -44,7 +59,12 @@ export default function TabLayout() {
           // For the active tab, we'll add a small indicator
           return (
             <View>
-              <Ionicons name={iconName} size={24} color={color} />
+              <Ionicons 
+                name={iconName} 
+                size={iconSize} 
+                color={color} 
+              />
+              
               {focused && (
                 <View className="h-1 w-6 rounded-full mt-1" />
               )}
@@ -69,12 +89,12 @@ export default function TabLayout() {
         name="property-posting"
         options={{
           title: "Post",
-          tabBarIcon: ({ focused, color }) => (
-            <View className="items-center justify-center bg-white rounded-full h-20 w-20 bottom-0 mt-0 pt-0 absolute">
-              <View className="h-16 w-16 items-center justify-center bg-[#0d1d35] rounded-full">
-                <Ionicons 
-                  name={focused ? "add" : "add-outline"} 
-                  size={30} 
+          tabBarIcon: ({ focused }) => (
+            <View className={`items-center justify-center bg-white rounded-full ${isSmallScreen ? 'h-16 w-16' : 'h-20 w-20'} bottom-0 mt-0 pt-0 absolute`}>
+              <View className={`items-center justify-center bg-[#0d1d35] rounded-full ${isSmallScreen ? 'h-12 w-12' : 'h-16 w-16'}`}>
+                <Ionicons
+                  name={focused ? "add" : "add-outline"}
+                  size={isSmallScreen ? 24 : 30}
                   color="#ffffff"
                 />
               </View>

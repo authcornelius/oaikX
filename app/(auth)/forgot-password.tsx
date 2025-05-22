@@ -1,9 +1,15 @@
-import { View, Text, Platform, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native'
+import { View, Text, Platform, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView, Dimensions } from 'react-native'
 import React, { useState } from 'react'
 import { AntDesign } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import Button from '@/components/Button';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Back from '@/components/Back';
+
+// Get screen dimensions for responsive calculations
+const { width, height } = Dimensions.get('window');
+const isSmallScreen = width < 375;
+const isShortScreen = height < 700;
 
 export default function ForgotPassword() {
   const router = useRouter()
@@ -52,7 +58,6 @@ export default function ForgotPassword() {
 
   const handleRequestReset = () => {
     const isContactValid = validateContact()
-
     if (isContactValid) {
       setIsLoading(true)
       // Implement API call to request password reset here
@@ -66,57 +71,56 @@ export default function ForgotPassword() {
 
   return (
     <SafeAreaView className='flex-1 bg-[#ffff]'>
-      <ScrollView 
-        showsVerticalScrollIndicator={false} 
-        contentContainerStyle={{ flexGrow: 1 }}
-        className={`h-screen ${Platform.OS === 'ios' ? 'px-5' : 'px-5 py-10'}`}
-      >
-        <View className='rounded-full w-14 h-14 overflow-hidden border-2 border-gray-300'>
-          <TouchableOpacity
-            className='flex-1 items-center justify-center bg-gray-100' 
-            onPress={handlePrevious}
-          >
-            <AntDesign 
-              name="arrowleft" 
-              size={24} 
-              color="#0d1d35" 
-            />
-          </TouchableOpacity>
+      <View className='px-4'>
+        <View className='overflow-hidden self-start'>
+          <Back/>
         </View>
-
+      </View>
+      
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ flexGrow: 1 }}
+        className={`${Platform.OS === 'ios' ? 'px-4' : isSmallScreen ? 'px-10' : 'px-4 py-6'}`}
+      >
+        
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          className='flex-1 items-center my-10'
+          className={`flex-1 items-center ${isShortScreen ? 'my-0' : 'my-10'}`}
         >
           <View className='w-full max-w-sm'>
-            <Text className='text-2xl text-center mt-4 font-inter-bold'>
+            <Text className={`${isSmallScreen ? 'text-xl' : 'text-2xl'} text-center mt-2 font-inter-bold`}>
               Reset Password
             </Text>
-
-            <Text className='text-md text-center mt-2 text-gray-600 font-inter-regular'>
+            
+            <Text className={`${isSmallScreen ? 'text-sm' : 'text-md'} text-center mt-1 text-gray-600 font-inter-regular px-2`}>
               Enter your email or mobile number associated with your account to reset your password
             </Text>
             
-            <View className='mt-8 w-full gap-y-4'>
+            <View className={`${isSmallScreen ? 'mt-6' : 'mt-8'} w-full gap-y-4`}>
               <View className='flex-row border border-gray-300 rounded-md overflow-hidden'>
-                <TouchableOpacity 
-                  className={`flex-1 p-3 ${contactMethod === 'email' ? 'bg-blue-100' : 'bg-white'}`}
+                <TouchableOpacity
+                  className={`flex-1 ${isSmallScreen ? 'p-2' : 'p-3'} ${contactMethod === 'email' ? 'bg-blue-100' : 'bg-white'}`}
                   onPress={() => setContactMethod('email')}
                 >
-                  <Text className={`text-center ${contactMethod === 'email' ? 'font-inter-bold' : 'font-inter-regular'}`}>Email</Text>
+                  <Text className={`text-center ${contactMethod === 'email' ? 'font-inter-bold' : 'font-inter-regular'} ${isSmallScreen ? 'text-sm' : 'text-base'}`}>
+                    Email
+                  </Text>
                 </TouchableOpacity>
-                <TouchableOpacity 
-                  className={`flex-1 p-3 ${contactMethod === 'mobile' ? 'bg-blue-100' : 'bg-white'}`}
+                
+                <TouchableOpacity
+                  className={`flex-1 ${isSmallScreen ? 'p-2' : 'p-3'} ${contactMethod === 'mobile' ? 'bg-blue-100' : 'bg-white'}`}
                   onPress={() => setContactMethod('mobile')}
                 >
-                  <Text className={`text-center ${contactMethod === 'mobile' ? 'font-inter-bold' : 'font-inter-regular'}`}>Mobile</Text>
+                  <Text className={`text-center ${contactMethod === 'mobile' ? 'font-inter-bold' : 'font-inter-regular'} ${isSmallScreen ? 'text-sm' : 'text-base'}`}>
+                    Mobile
+                  </Text>
                 </TouchableOpacity>
               </View>
-
+              
               {contactMethod === 'email' ? (
-                <View className='mt-4'>
+                <View className={`${isSmallScreen ? 'mt-3' : 'mt-4'}`}>
                   <TextInput
-                    className="h-14 w-full bg-gray-100 rounded-lg p-5"
+                    className={`${isSmallScreen ? 'h-12' : 'h-14'} w-full bg-gray-100 rounded-lg p-4`}
                     placeholder="Enter your email"
                     placeholderTextColor='#999999'
                     value={email}
@@ -125,13 +129,13 @@ export default function ForgotPassword() {
                     autoCapitalize="none"
                   />
                   {contactError && (
-                    <Text className='text-red-500 mt-1'>{contactErrorMessage}</Text>
+                    <Text className='text-red-500 mt-1 text-sm font-inter-medium'>{contactErrorMessage}</Text>
                   )}
                 </View>
               ) : (
-                <View className='mt-4'>
+                <View className={`${isSmallScreen ? 'mt-3' : 'mt-4'}`}>
                   <TextInput
-                    className="h-14 w-full bg-gray-100 rounded-lg p-5"
+                    className={`${isSmallScreen ? 'h-12' : 'h-14'} w-full bg-gray-100 rounded-lg p-4`}
                     placeholder="Enter your mobile number"
                     placeholderTextColor='#999999'
                     value={mobile}
@@ -139,20 +143,20 @@ export default function ForgotPassword() {
                     keyboardType="phone-pad"
                   />
                   {contactError && (
-                    <Text className='text-red-500 mt-1'>{contactErrorMessage}</Text>
+                    <Text className='text-red-500 mt-1 text-sm font-inter-medium'>{contactErrorMessage}</Text>
                   )}
                 </View>
               )}
-
-              <View className='mt-6'>
+              
+              <View className={`${isSmallScreen ? 'mt-4' : 'mt-6'}`}>
                 <Button
-                  className='rounded-full p-4 shadow-sm'
+                  className={`rounded-full ${isSmallScreen ? 'p-3' : 'p-4'} shadow-sm`}
                   variant='primary'
                   size='lg'
                   isLoading={isLoading}
                   onPress={handleRequestReset}
                 >
-                  <Text className='text-center text-[#ffff] text-xl font-lato-bold'>
+                  <Text className={`text-center text-[#ffff] ${isSmallScreen ? 'text-lg' : 'text-xl'} font-lato-bold`}>
                     Send OTP
                   </Text>
                 </Button>
@@ -161,6 +165,6 @@ export default function ForgotPassword() {
           </View>
         </KeyboardAvoidingView>
       </ScrollView>
-    </SafeAreaView>    
+    </SafeAreaView>
   )
 }

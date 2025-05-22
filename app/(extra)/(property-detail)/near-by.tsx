@@ -9,6 +9,9 @@ export default function NearBy() {
   const screenWidth = Dimensions.get("window").width;
   const cardWidth = (screenWidth - 60) / 2; // 60 accounts for padding and gap
 
+  const { width } = Dimensions.get('window');
+  const isSmallDevice = width < 375;
+
   const [selectedCategory, setSelectedCategory] = React.useState<string>('all');
   
   // Define categories for nearby properties
@@ -45,11 +48,14 @@ export default function NearBy() {
                 onPress={() => handleCategorySelect(category)}
               >
                 <Text 
-                  className={`text-lg font-inter-medium px-4 py-2 rounded-xl ${
-                    selectedCategory === category 
-                      ? 'bg-[#0D1D35] text-white' 
-                      : 'bg-gray-100 text-[#0D1D35]'
-                  }`}
+                  className={`font-inter-medium px-4 py-2 rounded-xl 
+                      ${
+                      selectedCategory === category 
+                        ? 'bg-[#0D1D35] text-white' 
+                        : 'bg-gray-100 text-[#0D1D35]'
+                    }
+                    ${isSmallDevice ? 'text-sm' : 'text-base'}
+                  `}
                 >
                   {category.charAt(0).toUpperCase() + category.slice(1)}
                 </Text>

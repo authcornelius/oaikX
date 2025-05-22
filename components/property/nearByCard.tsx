@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Platform } from 'react-native';
+import { View, Text, TouchableOpacity, Platform, Dimensions } from 'react-native';
 import { AntDesign, FontAwesome, Ionicons } from '@expo/vector-icons';
 import Image from '@/components/image/image';
 
@@ -25,9 +25,13 @@ const NearbyCard: React.FC<NearbyCardProps> = ({
   onToggleFavorite,
   onPress,
 }) => {
+
+  const { width } = Dimensions.get('window');
+  const isSmallDevice = width < 375;
+  
   return (
     <View className="bg-gray-100 p-2 rounded-lg flex-row gap-x-3 w-full">
-      <View className="h-32 w-32 overflow-hidden rounded-lg">
+      <View className={`${isSmallDevice ? 'h-28' : ' h-32'} w-32 overflow-hidden rounded-lg`}>
         <Image
           source={property.image}
           className="w-full h-full"
@@ -40,9 +44,9 @@ const NearbyCard: React.FC<NearbyCardProps> = ({
           >
             <FontAwesome
               name={isFavorite ? 'heart' : 'heart-o'}
-              size={15}
+              size={isSmallDevice ? 10 : 15}
               color="#e23030"
-              className='rounded-full bg-white p-2'
+              className={`rounded-full bg-white ${isSmallDevice ? 'p-1' : 'p-2'} `}
             />
           </TouchableOpacity>
         </View>
@@ -50,21 +54,21 @@ const NearbyCard: React.FC<NearbyCardProps> = ({
       
       <TouchableOpacity 
         onPress={() => onPress(property.id)}
-        className='w-8/12'
+        className={`${isSmallDevice ? 'w-7/12' : 'w-8/12'}`}
       >
         <View>
           <View className='flex-row items-center justify-between'>
-            <Text className='text-sm font-inter-medium text-[#0D1D35] bg-white rounded-full px-3 py-1'>
+            <Text className={`${isSmallDevice ? 'text-[12px]' : 'text-sm'} font-inter-medium text-[#0D1D35] bg-white rounded-full px-3 py-1`}>
               {property.type}
             </Text>
             <View className='flex-row items-center gap-x-1'>
               <AntDesign
                 name='star'
-                size={15}
+                size={isSmallDevice ? 12 : 15}
                 color="#e0d622"
-                className='mb-1'
+                className={` ${isSmallDevice ? '' : 'mb-1'}`}
               />
-              <Text className='text-[14px] font-inter-medium text-[#575758]'>
+              <Text className={`${isSmallDevice ? 'text-[12px]' : 'text-[14px]'} font-inter-medium text-[#575758]`}>
                 {property.rating}
               </Text>
             </View>
@@ -72,25 +76,25 @@ const NearbyCard: React.FC<NearbyCardProps> = ({
         </View>
 
         <View className={`flex-col mt-1 ${Platform.OS === 'ios' ? 'gap-2' : 'gap-1'}`}>
-          <Text className='text-md font-inter-bold mt-2 text-[#0D1D35] pl-1' numberOfLines={1}>
+          <Text className={`${isSmallDevice ? 'text-[12px]' : 'text-[16px]'} font-inter-bold mt-2 text-[#0D1D35] pl-1`} numberOfLines={1}>
             {property.bedrooms} Bedroom {property.type}
           </Text>
           <View className='flex-row items-center gap-x-1'>
             <Ionicons
               name='location-sharp'
-              size={16}
+              size={isSmallDevice ? 14 : 16}
               color="#6b7280"
             />
-            <Text className='text-sm font-inter-medium text-gray-500'>
+            <Text className={`${isSmallDevice ? 'text-[10px]' : ' text-sm' } font-inter-medium text-gray-500`}>
               {property.location}
             </Text>
           </View>
 
           <View className='flex-row items-center gap-x-1 mt-1 pl-1'>
-            <Text className='text-md font-inter-bold text-[#0D1D35]'>
+            <Text className={`${isSmallDevice ? 'text-[12px]' : ''} font-inter-bold text-[#0D1D35]`}>
               {property.price}
             </Text>
-            <Text className='text-[12px] font-inter-medium text-gray-500'>
+            <Text className={`${isSmallDevice ? 'text-[10px]' : ' text-[12px]'} font-inter-medium text-gray-500'`}>
               /month
             </Text>
           </View>

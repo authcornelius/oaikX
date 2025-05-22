@@ -1,4 +1,4 @@
-import { ScrollView, Text, View, TouchableOpacity } from 'react-native'
+import { ScrollView, Text, View, TouchableOpacity, Dimensions } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Octicons } from '@expo/vector-icons';
@@ -19,6 +19,8 @@ interface Notification {
 // Create sample notification data based on the property data
 const generateNotificationData = (): Notification[] => {
   const notifications: Notification[] = [];
+
+  
   
   // Create notifications related to properties
   recommendedData.slice(0, 2).forEach((property, index) => {

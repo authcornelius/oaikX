@@ -36,7 +36,7 @@ export const Button: React.FC<ButtonProps> = ({
   // Variant styles
   switch (variant) {
     case 'primary':
-      buttonClasses += ' bg-[#0d1d35] active:bg-blue-700';
+      buttonClasses += ' bg-[#0d1d35] active:bg-[#0d1d35]';
       textClasses += ' text-white';
       break;
     case 'secondary':
