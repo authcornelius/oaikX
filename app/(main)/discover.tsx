@@ -86,15 +86,14 @@ export default function Discover() {
     if (global.toggleSidebar) {
       global.toggleSidebar();
     }
+    console.log();
+    
   };
 
   const handlePropertyDetails = (id: string) => {
     // router.push(`/property/${id}`);
     console.log(`Property ID: ${id}`);
-  };
-
-  const onToggleFavorite = (id: string) => {
-    toggleFavorite(id);
+    router.push(`/(property-detail)/?id=${id}`);
   };
 
   const handleRecommendedProperty = () => {
@@ -150,6 +149,7 @@ export default function Discover() {
                   </Text>
                 </TouchableOpacity>
               </View>
+
               <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}

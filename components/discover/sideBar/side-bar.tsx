@@ -13,6 +13,8 @@ import React, { useEffect, useRef } from "react";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { Button } from "@/components/Button";
+import MenuItem from "./menu";
+import { sideBarMenuList } from "./menuList";
 
 interface SideBarProps {
   onClose: () => void;
@@ -69,6 +71,13 @@ export default function SideBar({
     router.replace('/(auth)/login');
   };
 
+
+  const handleSideBarItemPress = (route: string) => () => {
+    onClose();
+    router.push(route);
+  };
+
+
   return (
     <Animated.View
       className="h-screen"
@@ -104,68 +113,20 @@ export default function SideBar({
 
         <ScrollView>
           {/* Menu items */}
-          <View className="p-4">
-            <TouchableOpacity
-              className="flex-row items-center py-3"
-              onPress={() => navigateTo("/profile")}
-            >
-              <FontAwesome name="user" size={20} color="#0D1D35" />
-              <Text className="ml-4 text-base font-inter-medium text-[#0D1D35]">
-                Profile
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              className="flex-row items-center py-3"
-              onPress={() => navigateTo("/favorites")}
-            >
-              <FontAwesome name="heart" size={20} color="#0D1D35" />
-              <Text className="ml-4 text-base font-inter-medium text-[#0D1D35]">
-                Favorites
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              className="flex-row items-center py-3"
-              onPress={() => navigateTo("/(extra)/(notification)/notification")}
-            >
-              <Ionicons name="notifications" size={20} color="#0D1D35" />
-              <Text className="ml-4 text-base font-inter-medium text-[#0D1D35]">
-                Notifications
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              className="flex-row items-center py-3"
-              onPress={() => navigateTo("/messages")}
-            >
-              <FontAwesome name="envelope" size={20} color="#0D1D35" />
-              <Text className="ml-4 text-base font-inter-medium text-[#0D1D35]">
-                Messages
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              className="flex-row items-center py-3"
-              onPress={() => navigateTo("/settings")}
-            >
-              <FontAwesome name="cog" size={20} color="#0D1D35" />
-              <Text className="ml-4 text-base font-inter-medium text-[#0D1D35]">
-                Settings
-              </Text>
-            </TouchableOpacity>
-
-            <View className="border-t border-gray-200 my-2" />
-
-            <TouchableOpacity
-              className="flex-row items-center py-3"
-              onPress={() => navigateTo("/help")}
-            >
-              <FontAwesome name="question-circle" size={20} color="#0D1D35" />
-              <Text className="ml-4 text-base font-inter-medium text-[#0D1D35]">
-                Help & Support
-              </Text>
-            </TouchableOpacity>
+           <View className="p-4">
+            {sideBarMenuList.map((item, index) => (
+              <React.Fragment key={item.id}>
+                <MenuItem
+                  icon={item.icon}
+                  label={item.label}
+                  // onPress={() => navigateTo(item.route)}
+                  onPress={handleSideBarItemPress(item.route)}
+                />
+                {item.id === "settings" && (
+                  <View className="border-t border-gray-200 my-2" />
+                )}
+              </React.Fragment>
+            ))}
           </View>
         </ScrollView>
 

@@ -4,15 +4,19 @@ import Back from "@/components/Back";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { recommendedData } from "@/constants/data";
 import DoubleCard from "@/components/property/doubleCard";
+import { useRouter } from "expo-router";
 
 export default function Recommended() {
   const screenWidth = Dimensions.get("window").width;
   const cardWidth = (screenWidth - 60) / 2; // 60 accounts for padding and gap
 
+  const router = useRouter();
+
   const handlePropertyPress = (id: string) => {
-    // Handle property press, e.g., navigate to property detail
     console.log(`Property ${id} pressed`);
+    router.push(`/(extra)/(property-detail)?id=${id}`);
   };
+
 
   return (
     <SafeAreaView className="flex-1 bg-white px-5">

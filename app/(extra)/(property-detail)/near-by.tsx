@@ -4,10 +4,12 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import Back from '@/components/Back'
 import DoubleCard from '@/components/property/doubleCard'
 import { recommendedData } from "@/constants/data";
+import { useRouter } from 'expo-router'
 
 export default function NearBy() {
   const screenWidth = Dimensions.get("window").width;
   const cardWidth = (screenWidth - 60) / 2; // 60 accounts for padding and gap
+  const router = useRouter();
 
   const { width } = Dimensions.get('window');
   const isSmallDevice = width < 375;
@@ -25,6 +27,7 @@ export default function NearBy() {
   const handlePropertyPress = (id: string) => {
     // Handle property press, e.g., navigate to property detail
     console.log(`Property ${id} pressed`);
+    router.push(`/(extra)/(property-detail)/?id=${id}`);
   };
   
   return (

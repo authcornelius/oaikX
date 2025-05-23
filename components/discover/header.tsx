@@ -30,7 +30,7 @@ export default function Header({
 
   
   const handleNotification = () => {
-    router.push('/(extra)/(notification)/notification');
+    router.push('/(extra)/(notification)');
   };
  
   const toggleSidebar = () => {
