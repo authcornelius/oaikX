@@ -52,8 +52,8 @@ export default function TabLayout() {
             iconName = focused ? "add-circle" : "add-circle-outline";
           } else if (route.name === "favorite") {
             iconName = focused ? "heart" : "heart-outline";
-          } else if (route.name === "profile") {
-            iconName = focused ? "person" : "person-outline";
+          } else if (route.name === "chat") {
+            iconName = focused ? "chatbox" : "chatbox-outline";
           }
           
           // For the active tab, we'll add a small indicator
@@ -109,9 +109,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="chat"
         options={{
-          title: "Profile",
+          title: "Chat",
         }}
       />
     </Tabs>
